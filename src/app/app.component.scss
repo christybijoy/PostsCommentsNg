@@ -1,0 +1,104 @@
+@import "../assets/_styles/_mixins/flex";
+.container{
+    .usersList{
+        @include flexbox();
+        @include flex-direction(row);
+        // @include justify-content(space-between);
+        @include align-items(baseline); 
+    }
+    margin-top: 60px;
+    .info{
+        width: 50%;
+        margin: auto;
+        .userInfo{
+            margin: 30px 0px 10px 5px;
+            font-size: 20px;
+            font-weight: 600;
+            text-align: left;
+        }
+        .posts{ 
+            @include flexbox();
+            @include flex-direction(row);
+            @include justify-content(center);
+            @include align-items(center);
+            color: white;
+            .userPost{
+                background: #3f51b5;  
+                margin: 5px;
+                padding: 0px 15px; 
+                .commentsLength{
+                    color: #ddd;
+                    padding-left: 15px;
+                    font-size: 16px;
+                    font-weight: bold;
+                    color: #fff;
+                }
+                .comments{
+                    font-style: italic;
+                    color: #ddd;
+                    padding-left: 15px;
+                }
+            }
+            .loadComment{
+                font-size: 50px;
+                color: #1976d2;
+                border: none;
+                background: no-repeat;
+                margin-left: 20px;
+                cursor: pointer;
+            }
+        }
+        .loadAll{
+            .primaryBtn{
+                float: right;
+            }
+        }
+    }
+    .loading{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 1;
+        width: 150px;
+        height: 150px;
+        margin: -75px 0 0 -75px;
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #3498db;
+        width: 120px;
+        height: 120px;
+        animation: spin 2s linear infinite;
+        }
+        
+    @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+    }
+    .primaryBtn{
+            margin: 8px 1px 8px 0;
+            box-shadow: 0 3px 1px -2px #0003, 0 2px 2px #00000024, 0 1px 5px #0000001f;
+            background-color: #3f51b5;
+            color: #fff;
+            box-sizing: border-box;
+            position: relative;  
+            cursor: pointer;
+            outline: none;
+            border: none; 
+            display: inline-block;
+            white-space: nowrap;
+            text-decoration: none;
+            vertical-align: baseline;
+            text-align: center; 
+            min-width: 64px;
+            line-height: 36px;
+            padding: 0 16px;
+            border-radius: 2px;
+            @include flex(1);
+    }
+    .user_button{
+        background-color: #3f51b5; 
+    }
+    .user_button_selected{
+        background-color: #ff4081;; 
+    }
+}

@@ -1,0 +1,43 @@
+<div class="app-content">
+    <header></header>
+    <div class="container">
+        <div class="usersList" *ngIf="isLoaded">
+            <ng-container *ngFor="let user of users; let i = index;">
+                <button class="primaryBtn" [ngClass]="clickedUser && (clickedUser.id == user.id) ? 'user_button_selected' : 'user_button'" (click)="fetchPost(user)"> {{user.name | shortName}} </button>
+            </ng-container>
+        </div>
+        <div class="loading" *ngIf="!isLoaded">
+            <div class="d-flex justify-content-center">
+                <div class="spinner-border" role="status" >
+                  <span class="sr-only" class="loading"></span>
+                </div>
+              </div>
+        </div>
+        
+       
+        <div class="info" *ngIf="clickedUser && isLoaded">
+            <div class="userInfo">
+                Posts from {{clickedUser.name}}
+            </div>
+            <div class="" *ngFor="let post of posts; let i = index;">
+                <div class="posts" *ngIf="i<3 || loadAll">
+                    <div class="userPost" >
+                        <p>  {{post.title}} </p>
+                        <p>  {{post.body}} </p>
+                        <div class="commentsLength" *ngIf="post.comments"><p>{{post.comments.length}} Comments</p></div>
+                        <div class="comments" *ngFor="let comment of post.comments; let i = index;">
+                            <p>{{comment.body}}</p>
+                        </div>
+                    </div>
+                    <button class="loadComment" (click)="fetchComments(post)" >+</button>
+                </div>
+                
+            </div>
+            <div class="loadAll">
+                <button *ngIf="!loadAll" class="primaryBtn" (click)="loadAllPosts()">...Load All</button>
+            </div>
+        </div>
+    </div>
+    
+</div>
+ 
