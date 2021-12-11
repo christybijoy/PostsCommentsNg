@@ -1,6 +1,8 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
+import { Post } from './models/post.model';
 import { User } from './models/user.model';
+import { Comment } from './models/comment.model';
 import { DataService } from './services/data.service';
 
 /**
@@ -16,7 +18,7 @@ export class AppComponent {
   /**
    * Holds the users list
    */
-  public users: User[] = [];
+  public users: User[]  = [];
   /**
    * Holds the component data loaded status
    */
@@ -24,15 +26,15 @@ export class AppComponent {
   /**
    * Hold the posts by user
    */
-  public posts:any = []  
+  public posts: any = []
   /**
    * Hold the clicked user 
    */
-  public clickedUser!: User; 
+  public clickedUser!: User;
   /**
    * Hold the clicked post 
    */
-  public clickedpost!: any; 
+  public clickedpost!: any;
   /**
    * hold status to show/hide all post
    */
@@ -50,16 +52,16 @@ export class AppComponent {
   /**
    * ng life-cycle hook
    */
-  ngOnInit() { 
-    this.fetchUsers(); 
+  ngOnInit() {
+    this.fetchUsers();
   }
   /**
    * To fetch the users from the REST API
    */
   public fetchUsers() {
-    this.isLoaded =false;
+    this.isLoaded = false;
     this.dataservice.getUsers().pipe(takeUntil(this.destroyFlag$))
-      .subscribe(users => { 
+      .subscribe(users => {
         this.isLoaded = true;
         this.users = users
       }, error => {
@@ -71,13 +73,13 @@ export class AppComponent {
    * To fetch posts by user from REST API
    * @param userId 
    */
-  fetchPost(clickedUser:User){
-    this.loadAll =false;
-    this.clickedUser = clickedUser; 
+  fetchPost(clickedUser: User) {
+    this.loadAll = false;
+    this.clickedUser = clickedUser;
     this.isLoaded = false;
     this.dataservice.fetchUserPost(this.clickedUser.id).pipe(takeUntil(this.destroyFlag$))
-      .subscribe(data => { 
-        this.isLoaded = true; 
+      .subscribe(data => {
+        this.isLoaded = true;
         this.posts = data
       }, error => {
         console.log('An error occurred');
@@ -88,17 +90,17 @@ export class AppComponent {
    * To fetch comments for the post from REST API
    * @param userId 
    */
-   fetchComments(clickedPost:Comment){
+  fetchComments(clickedPost: Post) {
     this.clickedpost = clickedPost;
     this.isLoaded = false;
     this.dataservice.fetchComments(this.clickedpost.id).pipe(takeUntil(this.destroyFlag$))
       .subscribe(data => { 
-        this.isLoaded = true; 
-        this.posts.filter((post:any)=>{
-          if(post.id==this.clickedpost.id){
+        this.isLoaded = true;
+        this.posts.filter((post: Post) => {
+          if (post.id == this.clickedpost.id) {
             let postWithComments = post
-            postWithComments.comments = data;
-            post = postWithComments; 
+            postWithComments.comments =  data
+            post = postWithComments;
           }
         })
 
@@ -110,7 +112,7 @@ export class AppComponent {
   /**
    * To set status for loadAll
    */
-  loadAllPosts(){
+  loadAllPosts() {
     this.loadAll = true;
   }
   /**

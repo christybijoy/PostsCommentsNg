@@ -22,4 +22,13 @@ describe('HeaderComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it(`should have as title 'Digital Assignment – Posts & Comments'`, () => { 
+    expect(component.title).toEqual('Digital Assignment – Posts & Comments');
+  });
+
+  it('should render title', () => { 
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('.banner')?.textContent).toContain('Digital Assignment – Posts & Comments');
+  });
 });

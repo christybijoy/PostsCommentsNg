@@ -19,14 +19,16 @@
             <div class="userInfo">
                 Posts from {{clickedUser.name}}
             </div>
-            <div class="" *ngFor="let post of posts; let i = index;">
+            <div *ngFor="let post of posts; let i = index;">
                 <div class="posts" *ngIf="i<3 || loadAll">
                     <div class="userPost" >
                         <p>  {{post.title}} </p>
                         <p>  {{post.body}} </p>
-                        <div class="commentsLength" *ngIf="post.comments"><p>{{post.comments.length}} Comments</p></div>
-                        <div class="comments" *ngFor="let comment of post.comments; let i = index;">
-                            <p>{{comment.body}}</p>
+                        <div *ngIf="post.comments">
+                            <div class="commentsLength" ><p>{{post.comments.length}} Comments</p></div>
+                            <div class="comments" *ngFor="let comment of post.comments; let i = index;">
+                                <p *ngIf="comment.body">{{comment.body}}</p>
+                            </div>
                         </div>
                     </div>
                     <button class="loadComment" (click)="fetchComments(post)" >+</button>

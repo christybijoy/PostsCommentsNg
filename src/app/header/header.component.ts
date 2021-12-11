@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  /**
+   * Holds the title
+   */
+   public title: string = 'Digital Assignment – Posts & Comments';
+
   constructor() { }
 
   ngOnInit(): void {
