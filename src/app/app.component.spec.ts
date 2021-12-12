@@ -61,8 +61,6 @@ describe('AppComponent', () => {
     expect(component.isLoaded).toBeTrue();
   });
 
-
-
   it('Should fetch comments for the selected posts', () => {
     const mockComments: Comment[] =
       [{
