@@ -43,13 +43,6 @@ describe('AppComponent', () => {
     expect(component.isLoaded).toBeTrue();
   });
 
-  // it('Should get error while fetching the users', () => {
-  //   const error = new Error()
-  //   spyOn(component.dataservice, 'getUsers').and.returnValue(of(error));
-  //   component.fetchUsers();
-  //   expect(component.isLoaded).toBeTrue();
-  // });
-
   it('Should fetch posts by selected user', () => {
     const mockPosts: Post[] = [{
       "userId": 1,
@@ -68,18 +61,7 @@ describe('AppComponent', () => {
     expect(component.isLoaded).toBeTrue();
   });
 
-  // it('Should get error while fetching posts by the selected users', () => {
-  //   const error = new Error()
-  //   spyOn(component.dataservice, 'fetchUserPost').and.returnValue(of(error));
-  //   const mockObj = {
-  //     "id": 1,
-  //     "name": "Leanne Graham",
-  //     "username": "Bret",
-  //     "email": "Sincere@april.biz",
-  //   }
-  //   component.fetchPost(mockObj);
-  //   expect(component.isLoaded).toBeTrue();
-  // });
+
 
   it('Should fetch comments for the selected posts', () => {
     const mockComments: Comment[] =
@@ -101,18 +83,7 @@ describe('AppComponent', () => {
     expect(component.isLoaded).toBeTrue();
   });
 
-  // it('Should get error while fetching comments for the selected posts', () => {
-  //   const error = new Error()
-  //   spyOn(component.dataservice, 'fetchComments').and.returnValue(of(error));
-  //   const mockObj = {
-  //     "userId": 1,
-  //     "id": 1,
-  //     "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-  //     "body": "quia et",
-  //   }
-  //   component.fetchComments(mockObj);
-  //   expect(component.isLoaded).toBeTrue();
-  // });
+
   it('Should load all post when click on Load All button', () => {
     component.loadAllPosts();
     expect(component.loadAll).toBeTrue();
